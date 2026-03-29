@@ -75,7 +75,11 @@ namespace MyFileSync
 
                     foreach (FileInfo fileInfo in directoryInfo.EnumerateFiles("*", searchOption))
                     {
-                        cancellationToken.ThrowIfCancellationRequested();
+                        if (count % 10 == 0) // 10ファイルごとに中止を確認する
+                        {
+                            cancellationToken.ThrowIfCancellationRequested();
+                        }
+
                         count++;
                     }
                 }
