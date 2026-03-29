@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyFileSync.src
+namespace MyFileSync
 {
     class FileComparisonResult
     {

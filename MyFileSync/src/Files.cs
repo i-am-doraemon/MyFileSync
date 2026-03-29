@@ -1,5 +1,4 @@
-﻿using MyFileSync.src;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -23,7 +22,10 @@ namespace MyFileSync
 
                     foreach (FileInfo fileInfo in directoryInfo.EnumerateFiles("*", searchOption))
                     {
-                        cancellationToken.ThrowIfCancellationRequested();
+                        if (total % 10 == 0) // 10ファイルごとに中止を確認する
+                        {
+                            cancellationToken.ThrowIfCancellationRequested();
+                        }
 
                         total++;
                     }
@@ -32,12 +34,16 @@ namespace MyFileSync
 
                     foreach (FileInfo fileInfo in directoryInfo.EnumerateFiles("*", searchOption))
                     {
-                        cancellationToken.ThrowIfCancellationRequested();
+                        if (count % 10 == 0) // 10ファイルごとに中止を確認する
+                        {
+                            cancellationToken.ThrowIfCancellationRequested();
+                        }
 
                         FileDescription fileDescription = new FileDescription(fileInfo);
                         list.Add(fileDescription);
 
                         count++;
+
                         if (count % 10 == 0) // 10ファイルごとに進歩を報告する
                         {
                             progress.Report(new FileListUpReport(total, count));

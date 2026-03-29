@@ -1,5 +1,4 @@
 ﻿using Microsoft.Win32;
-using MyFileSync.src;
 using System.IO;
 using System.Text;
 using System.Windows;
